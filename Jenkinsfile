@@ -12,7 +12,7 @@ pipeline {
                 sh "docker images"
                 sh "docker tag nginx ${DOCKER_REPO}:b6"
                 echo "***docker login****"
-                sh "docker login -u ${DOCKER_CREDS_USR} -P ${DOCKER_CREDS_PSW} "
+                sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW} "
                 sh "docker push ${DOCKER_REPO}:b6"
             }
         }
