@@ -1,7 +1,7 @@
-ppipeline {
+pipeline {
     agent any
     stages {
-        stage ('Dockerbuildpush') {
+        stage ('DockerBuildPush') {
             steps {
                 sh "docker pull nginx"
                 echo "***printing the images****"
