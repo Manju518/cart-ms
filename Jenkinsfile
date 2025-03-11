@@ -7,7 +7,9 @@ pipeline{
         stage('ProdDeploy') {
             when 
             {
+                not {
                 equals expected:"prod" , actual:"${DEPLOY_TO}"
+                }
             }
             steps{
                 echo "Deploy to production"
