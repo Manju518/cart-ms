@@ -14,6 +14,7 @@ pipeline {
                 echo "Welcome ${name}"
                 echo "You enrolled for ${course}"
                 echo "You are certified in ${cloud}"
+                echo "My branch is ${env.BRANCH_NAME}"
             }
         }
     }
