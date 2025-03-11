@@ -1,20 +1,20 @@
 pipeline{
     agent any
-    environment {
-        DEPLOY_TO = 'production'
-    }
-    stages{ 
-        stage('ProdDeploy') {
-            when 
-            {
-                not {
-                equals expected:"prod" , actual:"${DEPLOY_TO}"
-                }
-            }
-            steps{
-                echo "Deploy to production"
+    stages{
+        stage('DeployToDev'){
+            steps {
+                echo "Deploying to Dev"
             }
         }
-
+        stage('DeployToProd') {
+            when{
+                //branch condition
+                expression {BRANCH_NAME ==~/(production|staging)/ }
+            }
+            steps {
+            
+            echo "Deploying to Prod env"
+            }
+        }
     }
 }
