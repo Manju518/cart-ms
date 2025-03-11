@@ -12,7 +12,7 @@ pipeline{
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
 
     }
-    satges {
+    stages {
         stage ('Example') 
         {
             steps {
