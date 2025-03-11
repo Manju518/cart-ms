@@ -14,7 +14,7 @@ pipeline {
 
             }
         }
-        stage(DockerBuildnPush) {
+        stage('DockerBuildnPush') {
             steps{
                 echo "Building pushing docker image"
             }
