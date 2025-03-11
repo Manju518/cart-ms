@@ -1,24 +1,18 @@
 pipeline {
     agent any
     environment {
-        DOCKER_REPO = "manju518/nginxdevops"
+        DOCKER_CREDS =credentials('dockerhub_creds')
+        DOCKER_REPO="manju518/nginxdevops"
     }
     stages {
-        stage('Docker Build and Push') {
+        stage ('DockerBuildPush') {
             steps {
                 sh "docker pull nginx"
-                echo "*** Printing the images ***"
+                echo "***printing the images****"
                 sh "docker images"
-
-                echo "*** Tagging the image ***"
-                sh "docker tag nginx ${DOCKER_REPO}:b6"
-
-                echo "*** Logging in to Docker Hub ***"
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
-                }
-
-                echo "*** Pushing the image to Docker Hub ***"
+                sh "Docker tag nginx ${DOCKER_REPO}:b6"
+                echo "***docker login****"
+                sh "docker login -u ${DOCKER_CREDS_USR} -P ${DOCKER_CREDS_PSW} "
                 sh "docker push ${DOCKER_REPO}:b6"
             }
         }
