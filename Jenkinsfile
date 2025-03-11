@@ -1,25 +1,18 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Build') {
-            steps{
-                echo "***Building the application****"
-             }
-            
-        }
-        stage('Sonar') {
-            steps{
-                echo "***scanning the application***"
+    environment {
+        course= "Docker & K8s"
+        name = "Manju"
+    }
+    stages {
+        stage ('Build') {
+            environment {
+                cloud="GCP"
             }
-        }
-        stage('Docker'){
-            steps{
-                echo "***Building the docker image***"
-            }
-        }
-        stage('K8Deploy') {
-            steps{
-                echo "Deploy using K8"
+            steps {
+                echo "Welcome ${name}"
+                echo "You enrolled for ${course}"
+                echo "You are certified in ${cloud}"
             }
         }
     }
