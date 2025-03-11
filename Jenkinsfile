@@ -6,19 +6,18 @@ pipeline{
     stages{
         stage('DeploytoDev') {
             steps {
-                echo "deploying to Dev env"
+            echo "deploying to Dev env"
             }
         }
         stage('DeploToProd') {
             when {
-                allof{
+                allof {
                     branch 'production'
-                    environment name:'Deploy_to' , value :'production'
+                    environment name: 'DEPLOY_TO' , value: 'production'
                 }
-
             }
             steps {
-                 echo "deploying to Prod env"
+                echo "deploying to Prod env"
             }
         }
     
